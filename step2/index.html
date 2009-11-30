@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="jqtouch/jqtouch.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="themes/apple/theme.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+	<script src="jqtouch/jquery.1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jqtouch/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<script>
+		var jQT = $.jQTouch();
+
+	  $(document).ready(function() {
+			$("#amount").focus();
+			$("#clear").click(function(){$('form')[0].reset();});
+			$("#calc").click(function(){$("#split_form").submit();});
+			
+			$("#split_form").submit(function(){
+				console.log($("#amount").val(), $("#gratuity").val(), $("#num_diners").val());
+				var result = $("#amount").val() * $("#gratuity").val() / $("#num_diners").val();
+				$("#result").text("$"+result.toFixed(2));
+				return false;
+				});
+	   });
+	</script>
+  
+
+</head>
+<body>	
+	<div id="index">
+		<div class="toolbar">
+			<h1>Tip Calc</h1>
+			<a class="button flip" href="#about">About</a>
+		</div>
+	<form action="#" id="split_form">
+		<ul class="edit rounded">           
+			<li><input type="text" name="amount" id="amount" placeholder="Amount" type="number" required="required"></li>
+			<li><label># Diners</label><input type="text" name="num_diners" id="num_diners" value="1"  type="number"></li>
+			<li>
+				<label>Gratuity</label>
+				<select id="gratuity" name="gratuity">
+					<option value="1.0">None</option>
+				  <option value="1.10">10%</option>
+				  <option value="1.15" selected="1.15">15%</option>
+				  <option value="1.18">18%</option>
+				  <option value="1.20">20%</option>
+				</select>
+			</li>
+			<li><span id="result"></span></li>
+			
+			<li><a href="#" id="calc" class="whiteButton" style="margin: 10px">Calc</a>
+			<a href="#" id="clear" class="whiteButton" style="margin: 10px" >Clear</a></li>
+		</ul>
+	</form>
+	</div>
+	<div id="about">
+		<div class="toolbar">
+    	<h1>About</h1>
+      <a href="#" class="back">Back</a>
+    </div>
+		<div class="info">
+			This is the About Box. Version 1.0.
+		</div>
+	</div>
+</body>
+</html>
